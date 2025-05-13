@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Daily Blog</title>
+  <meta charset="utf-8">
+
+      <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Themify -->
+    <link rel="stylesheet" href="../../plugins/themify/css/themify-icons.css">
+    
+    <!-- Inline styles for search form -->
+    <style>
+      .seamless-search {
+        display: flex;
+      }
+      .seamless-search .form-control {
+        border-radius: 4px 0 0 4px;
+        margin-bottom: 0;
+      }
+      .seamless-search .btn {
+        border-radius: 0 4px 4px 0;
+        margin-left: -1px;
+      }
+      .navbar-form {
+        margin-top: 8px;
+      }
+    </style>
+    
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="/"><p class="navbar-brand">DAILY BLOG</p></a>
+      </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li id="home"><a href="/">HOME</a></li>
+          <% if (locals.user) { %>
+            <li id="compose"><a href="/compose">CREATE A POST</a></li>
+            <li><a href="/logout">LOGOUT (<%= locals.user.username %>)</a></li>
+          <% } else { %>
+            <li><a href="/login">LOGIN</a></li>
+            <li><a href="/register">REGISTER</a></li>
+          <% } %>
+          <li id="about"><a href="/about">ABOUT</a></li>
+          <li id="contact"><a href="/contact">CONTACT</a></li>
+          <!-- Search form -->
+          <li>
+            <form class="navbar-form" action="/search" method="GET">
+              <div class="seamless-search">
+                <input type="text" name="query" class="form-control" placeholder="Search posts...">
+                <button type="submit" class="btn btn-inverse">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </div>
+            </form>
+          </li>
+        </ul>
+    </div>
+  </nav>
+
+  <body>
+    <div class="container">

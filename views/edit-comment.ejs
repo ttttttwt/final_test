@@ -1,0 +1,17 @@
+<%- include("partials/header"); -%>
+
+<div class="container">
+  <h1>Edit Comment</h1>
+  
+  <form action="/comments/<%= comment.id %>" method="POST">
+    <div class="form-group">
+      <label for="commentContent">Comment</label>
+      <textarea class="form-control" id="commentContent" name="commentContent" rows="4" required><%= comment.content %></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="/posts/<%= comment.post_id %>" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+<%- include("partials/footer"); -%>

@@ -1,0 +1,45 @@
+<%- include("partials/header"); -%>
+
+<section class="section-padding pt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h2>Search Results for "<%= query %>"</h2>
+        <p>Found <%= resultsCount %> result<%= resultsCount !== 1 ? 's' : '' %></p>
+
+        <% if (resultsCount > 0) { %>
+          <div class="search-results">
+            <% results.forEach(function(post) { %>
+              <article class="post-grid mb-4">
+                <h3 class="mb-1 mt-2 post-title">
+                  <a href="/posts/<%= post.id %>"><%= post.title %></a>
+                </h3>
+                <span class="font-sm text-color letter-spacing text-uppercase post-meta font-extra"><%= post.subject %></span>
+                <% if (post.username) { %><span> - by <%= post.username %></span><% } %>
+                <div class="post-content mt-2">
+                  <p><%= post.content.substring(0, 200) + " ..." %>
+                    <a class="read-more" href="/posts/<%= post.id %>">Read More</a>
+                  </p>
+                </div>
+                <% if (post.title_sim || post.content_sim) { %>
+                  <small class="text-muted">
+                    Match relevance: <%= Math.round(Math.max(post.title_sim || 0, post.content_sim || 0) * 100) %>%
+                  </small>
+                <% } %>
+              </article>
+              <hr>
+            <% }); %>
+          </div>
+        <% } else { %>
+          <div class="no-results">
+            <p>No posts found matching your search. Please try different keywords.</p>
+          </div>
+        <% } %>
+        
+        <button class="btn btn-dark" onclick="window.location.href='/'">Back to Blog</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include("partials/footer"); -%>
